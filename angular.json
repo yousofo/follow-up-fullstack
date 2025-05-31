@@ -15,22 +15,26 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": [
               "lodash"
             ],
-            "outputPath": "../API/wwwroot",
+            "outputPath": {
+              "base": "../API/wwwroot"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "src/polyfills.ts"
+            ],
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {
@@ -45,8 +49,6 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -65,14 +67,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "client:build",
-            "sslKey": "src/ssl/server.key",
-            "sslCert": "src/ssl/server.crt",
-            "ssl": true
+            "buildTarget": "client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "client:build:production"
+              "buildTarget": "client:build:production"
             }
           }
         },
@@ -124,7 +123,6 @@
       }
     }
   },
-  "defaultProject": "client",
   "cli": {
     "analytics": "1a570598-264c-4fc1-afd5-e760bca9d705"
   }

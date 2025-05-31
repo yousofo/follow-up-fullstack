@@ -55,8 +55,10 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone'; // Included with Angular CLI.
+import 'zone.js';
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// Custom SSL for dev server is now disabled. If you need HTTPS, use Angular CLI's built-in option or provide valid certs.
